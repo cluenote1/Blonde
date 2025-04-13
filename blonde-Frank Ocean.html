@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Blonde</title>
+		<style>
+			h1 {color: #111}
+            body {background-color: #f7f7f7;}
+            p {margin: 4px 0;line-height: 1.2;font-size: 14px;color: #444;}
+            li {font-size: 18px;cursor: pointer;}
+            li:hover {text-decoration: underline;color: #444;}
+            #player {margin-top: 20px;width: 200%;background-color: #eee;border-radius: 8px;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);}
+            .album-img {
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                transition: transform 0.3s ease;
+                }
+            #lyrics-box {
+                position: fixed;
+                top: 100px;
+                right: 40px;
+                width: 300px;
+                padding: 20px;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                max-height: 400px;
+                overflow-y: auto;
+                font-size: 14px;
+                color: #222;
+                font-family: 'Courier New', monospace;
+                white-space: pre-line;
+                }
+              .playing::after {
+                content: " 🎵";
+                color: #ff6600;
+                }
+		</style>
+			
+	</head>
+	<body>
+		<h1><i>Blonde</i> - Frank Ocean</h1>
+		<hr>
+        <table>
+            <tr>
+                <td>
+                    <img class="album-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/45/68/bb4568f3-68cd-619d-fbcb-4e179916545d/BlondCover-Final.jpg/600x600bf-60.jpg">
+                    <p>발매일: 2016년 8월 20일</p>
+                    <p>17트랙, 60:08</p>
+                    <p>Boys Don't Cry</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <h2><b>Track List</b></h2>
+                    <ol>
+                        <li onclick="playTrack('blonde/nikes.mp3')">Nikes</li>
+                        <li onclick="playTrack('blonde/ivy.mp3')">Ivy</li>
+                        <li onclick="playTrack('blonde/pink_white.mp3')">Pink + White</li>
+                        <li onclick="playTrack('blonde/be_yourself.mp3')">Be Yourself</li>
+                        <li onclick="playTrack('blonde/solo.mp3')">Solo</li>
+                        <li onclick="playTrack('blonde/skyline_to.mp3')">Skyline to</li>
+                        <li onclick="playTrack('blonde/self_control.mp3')">Self Control</li>
+                        <li onclick="playTrack('blonde/good_guy.mp3')">Good Guy</li>
+                        <li onclick="playTrack('blonde/nights.mp3')">Nights</li>
+                        <li onclick="playTrack('blonde/solo_reprise.mp3')">Solo (Reprise)</li>
+                        <li onclick="playTrack('blonde/pretty_sweet.mp3')">Pretty Sweet</li>
+                        <li onclick="playTrack('blonde/facebook_story.mp3')">Facebook Story</li>
+                        <li onclick="playTrack('blonde/close_to_you.mp3')">Close To You</li>
+                        <li onclick="playTrack('blonde/white_ferrari.mp3')">White Ferrari</li>
+                        <li onclick="playTrack('blonde/seigfried.mp3')">Seigfried</li>
+                        <li onclick="playTrack('blonde/godspeed.mp3')">Godspeed</li>
+                        <li onclick="playTrack('blonde/futura_free.mp3')">Futura Free</li>
+                    </ol>
+                    <audio id="player" controls style="margin-top: 20px; width: 200%;">
+                    </audio>
+                </td>
+		    </tr>
+        </table>
+        <div id="lyrics-box">
+          <p style="color: #aaa;">가사를 보려면 트랙을 클릭하세요</p>
+        </div>
+        <script> const player = document.getElementById('player');
+                const lyricsBox = document.getElementById('lyrics-box');
+
+                const tracks = [
+                  "nikes.mp3", "ivy.mp3", "pink_white.mp3", "be_yourself.mp3",
+                  "solo.mp3", "skyline_to.mp3", "self_control.mp3", "good_guy.mp3",
+                  "nights.mp3", "solo_reprise.mp3", "pretty_sweet.mp3", "facebook_story.mp3",
+                  "close_to_you.mp3", "white_ferrari.mp3", "seigfried.mp3", "godspeed.mp3", "futura_free.mp3"
+                ];
+
+                const lyrics = {
+                  "nikes.mp3": `These bitches want Nikes\n이 여자들은 나이키를 원해\n\nThey looking for a check\n돈이나 뭔가 보상을 바라고 있어\n\nTell 'em it ain't likely\n그럴 일 없다고 해\n\nSaid she need a ring like Carmelo\n그녀는 카멜로 앤서니처럼 반지를 원한대 (결혼 or 챔피언 반지 비유)\n\nYou must be on that white like Othello\n너 설마 약에 취한 거야? (white = cocaine, 오셀로는 셰익스피어 극 인물 + 피부색 비유)\n\nAll you want is Nikes, but the real ones\nJust like you, just like me\n넌 나이키만 원하지만, 진짜는 너랑 나 같은 사람들이야\n\nI don't play, I don't make time\nBut if you need dick, I got you\n장난 안 쳐, 시간도 안 내\n근데 섹스가 필요하면 해줄게\n\nAnd I yam from the line\n(비유적 표현, NBA 프리드로우 라인에서 덩크? 혹은 ‘나는 라인 넘는 사람’)\n\nPour up for A$AP, R.I.P. Pimp C\nR.I.P. Trayvon, that nigga look just like me\nA$AP을 위해 한잔해, 핌프 C는 고인이 됐고\nTrayvon도… 걔는 나랑 똑같이 생겼어 (흑인 사회에 대한 메시지)\n\nWoo, fuckin' buzzin', woo\nThat my little cousin, he got a little trade\n와, 취했어\n내 사촌이 무기를 좀 갖고 있지\n\nHis girl keep the scales, a little mermaid\nWe out by the pool, some little mermaids\nMe and them gel like twigs with them bangs\nNow that's a real mermaid\n그의 여친은 저울을 들고 있어, 작은 인어 같아 (마약, 약 팔이 비유)\n우린 수영장에 있어, 작은 인어들 사이에\n걔네랑 나는 찰떡처럼 잘 맞아\n진짜 인어 같은 느낌\n\nYou been holding your breath, weighted down\nPunk madre, punk papá\n넌 숨 참은 채 버텼고, 짓눌렸지\n반항적인 엄마, 반항적인 아빠\n\nHe don't care for me, but he cares for me\nAnd that's good enough\n그는 날 아끼진 않지만, 그래도 챙겨주긴 해\n그걸로도 충분해\n\nWe don't talk much or nothin'\nBut when we talkin' 'bout somethin'\nWe have good discussion\n많이 대화하진 않아\n근데 진짜로 얘기할 땐 의미 있는 대화가 돼\n\nI met his friends last week\nFeels like they're up to somethin'\nThat's good for us\n그의 친구들을 지난주에 만났어\n뭔가 꾸미는 것 같아\n우리에게 좋은 일일지도\n\nWe'll let you guys prophesy\n예언은 너희가 해\n\nWe'll let you guys prophesy\nWe gon' see the future first\n예언은 너희가 해\n우린 먼저 미래를 직접 볼 거야\n\nWe'll let you guys prophesy\nWe gon' see the future first\n예언은 너희가 해\n우린 먼저 미래를 직접 볼 거야\n\nLiving so the last night feels like a past life\n어젯밤조차 전생처럼 느껴질 만큼 치열하게 살아\n\nSpeaking of the don't know what got into people\nDevil be possessin' homies\nDemons try to body-jump\n요즘 사람들 왜 그런지 모르겠어\n악마가 친구들한테 씌인 것 같고\n귀신들이 몸을 옮겨 다니는 것 같아\n\nWhy you think I'm in this bitch wearing a fucking yarmulke?\n내가 왜 여기서 야물카(유대인 전통 모자)를 쓰고 있겠어?\n(신성함, 보호, 종교적인 의미 비유 – 뭔가 더 높은 힘에 의지하는 느낌)\n\nAcid on me like the rain\nWeed crumbles into glitter\nRain, glitter\n비처럼 내 몸 위에 LSD가 흘러\n위드는 반짝이는 가루처럼 부서지고\n비, 그리고 반짝임\n\nWe laid out on this wet floor\nAway turf, no Astro\nMesmerized how the strobes glow\n우린 이 젖은 바닥에 누워 있어\n익숙하지 않은 이 땅에서, 인조잔디도 없고\n조명이 반짝이는 모습에 넋을 잃었어\n\nLook at all the people feet dance\nI know that your nigga came witcha\nBut he ain't witcha\n사람들 발이 춤추는 걸 봐\n네 남자친구랑 같이 왔다는 거 알아\n근데 지금 여기선 걔가 아니야\n\nWe only human and it's humid in these Balmains\nI mean my balls sticking to my jeans\n우린 그냥 인간일 뿐이야, 그리고 이 Balmains(디자이너 브랜드) 안은 덥고 습하지\n내 말은, 땀 때문에 바지에 붙을 정도야\n\nWe breathin' pheromones, Amber Rose\nSippin' pink-gold lemonades\n우린 지금 페로몬을 내뿜고 있어, 엠버 로즈처럼\n핑크 골드빛 레모네이드를 마시며\n\nFeelin'\n느껴져\n\nI may be younger, but I'll look after you\n내가 더 어릴 수도 있지만, 널 챙겨줄게\n\nWe're not in love, but I'll make love to you\n우린 사랑하는 사이는 아니지만, 사랑처럼 너를 안아줄게\n\nWhen you're not here, I'll save some for you\n네가 없을 땐, 널 위해 남겨둘게\n\nI'm not him, but I'll mean something to you\nI'll mean something to you\nI'll mean something to you\n나는 네 남자친구는 아니지만\n너한테 어떤 의미는 될 거야\n그건 확실해\n\nYou got a roommate, he'll hear what we do\nIt's only awkward if you're fucking him too\n네 룸메이트가 우리가 뭐 하는지 들을 수도 있겠지\n근데 그 사람이랑도 자고 있는 거 아니라면 어색할 거 없어`,
+                  "ivy.mp3": `I thought that I was dreaming\nWhen you said you love me`,
+                  "pink_white.mp3": `That's the way everyday goes\nEvery time we've no control`,
+                  "be_yourself.mp3": `Be yourself and not someone else\nDon’t drink, don’t smoke weed`,
+                  
+                };
+
+                let currentIndex = 0;
+
+                function playTrack(path) {
+                  const filename = path.split("/").pop(); //
+                  player.src = path;
+                  player.play();
+                  currentIndex = tracks.indexOf(filename);
+                  lyricsBox.innerText = lyrics[filename] || "(가사 준비 중)";
+                }
+
+                player.addEventListener('ended', () => {
+                  currentIndex++;
+                  if (currentIndex < tracks.length) {
+                    playTrack("blonde/" + tracks[currentIndex]);
+                  }
+                });
+        </script>
+        
+
+	</body>
+</html>
