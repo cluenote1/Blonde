@@ -1,0 +1,937 @@
+<!doctype html>
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Blonde</title>
+		<style>
+			h1 {color: #111}
+            body {background-color: #f7f7f7;}
+            p {margin: 4px 0;line-height: 1.2;font-size: 14px;color: #444;}
+            li {font-size: 18px;cursor: pointer;}
+            li:hover {text-decoration: underline;color: #444;}
+            #player {margin-top: 20px;width: 200%;background-color: #eee;border-radius: 8px;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);}
+            .album-img {
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                transition: transform 0.3s ease;
+                }
+            #lyrics-box {
+                position: fixed;
+                top: 100px;
+                right: 40px;
+                width: 400px;
+                padding: 20px;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                max-height: 400px;
+                overflow-y: auto;
+                font-size: 14px;
+                color: #222;
+                font-family: 'Courier New', monospace;
+                white-space: pre-line;
+                }
+              .playing::after {
+                content: " ♫";
+                color: #000000;
+                }
+		</style>
+			
+	</head>
+	<body>
+		<h1><i>Blonde</i> - Frank Ocean</h1>
+		<hr>
+        <table>
+            <tr>
+                <td>
+                    <img class="album-img" src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/45/68/bb4568f3-68cd-619d-fbcb-4e179916545d/BlondCover-Final.jpg/600x600bf-60.jpg">
+                    <p>발매일: 2016년 8월 20일</p>
+                    <p>17트랙, 60:08</p>
+                    <p>Boys Don't Cry</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <h2><b>Track List</b></h2>
+                    <ol>
+                        <li onclick="playTrack('blonde/nikes.mp3')">Nikes</li>
+                        <li onclick="playTrack('blonde/ivy.mp3')">Ivy</li>
+                        <li onclick="playTrack('blonde/pink_white.mp3')">Pink + White</li>
+                        <li onclick="playTrack('blonde/be_yourself.mp3')">Be Yourself</li>
+                        <li onclick="playTrack('blonde/solo.mp3')">Solo</li>
+                        <li onclick="playTrack('blonde/skyline_to.mp3')">Skyline to</li>
+                        <li onclick="playTrack('blonde/self_control.mp3')">Self Control</li>
+                        <li onclick="playTrack('blonde/good_guy.mp3')">Good Guy</li>
+                        <li onclick="playTrack('blonde/nights.mp3')">Nights</li>
+                        <li onclick="playTrack('blonde/solo_reprise.mp3')">Solo (Reprise)</li>
+                        <li onclick="playTrack('blonde/pretty_sweet.mp3')">Pretty Sweet</li>
+                        <li onclick="playTrack('blonde/facebook_story.mp3')">Facebook Story</li>
+                        <li onclick="playTrack('blonde/close_to_you.mp3')">Close To You</li>
+                        <li onclick="playTrack('blonde/white_ferrari.mp3')">White Ferrari</li>
+                        <li onclick="playTrack('blonde/seigfried.mp3')">Seigfried</li>
+                        <li onclick="playTrack('blonde/godspeed.mp3')">Godspeed</li>
+                        <li onclick="playTrack('blonde/futura_free.mp3')">Futura Free</li>
+                    </ol>
+                    <audio id="player" controls style="margin-top: 20px; width: 200%;">
+                    </audio>
+                </td>
+		    </tr>
+        </table>
+        <div id="lyrics-box">
+          <p style="color: #aaa;">가사를 보려면 트랙을 클릭하세요</p>
+        </div>
+        <script> const player = document.getElementById('player');
+                const lyricsBox = document.getElementById('lyrics-box');
+
+                const tracks = [
+                  "nikes.mp3", "ivy.mp3", "pink_white.mp3", "be_yourself.mp3",
+                  "solo.mp3", "skyline_to.mp3", "self_control.mp3", "good_guy.mp3",
+                  "nights.mp3", "solo_reprise.mp3", "pretty_sweet.mp3", "facebook_story.mp3",
+                  "close_to_you.mp3", "white_ferrari.mp3", "seigfried.mp3", "godspeed.mp3", "futura_free.mp3"
+                ];
+
+                const lyrics = {
+                  "nikes.mp3": `These bitches want Nikes\n\n
+                                      They looking for a check\n
+                                      Tell 'em it ain't likely\n\n
+                                      Said she need a ring like Carmelo\n\n
+                                      You must be on that white like Othello\n\n
+                                      All you want is Nikes, but the real ones\n
+                                      Just like you, just like me\n\n
+                                      I don't play, I don't make time\n
+                                      But if you need dick, I got you\n
+                                      And I yam from the line\n\n
+                                      Pour up for A$AP, R.I.P. Pimp C\n
+                                      R.I.P. Trayvon, that nigga look just like me\n\n
+                                      Woo, fuckin' buzzin', woo\n\n
+                                      That my little cousin, he got a little trade\n\n
+                                      His girl keep the scales, a little mermaid\n
+                                      We out by the pool, some little mermaids\n\n
+                                      Me and them gel like twigs with them bangs\n
+                                      Now that's a real mermaid\n\n
+                                      You been holding your breath, weighted down\n\n
+                                      Punk madre, punk papá\n\n
+                                      He don't care for me, but he cares for me\n
+                                      And that's good enough\n\n
+                                      We don't talk much or nothin'\n
+                                      But when we talkin' 'bout somethin'\n
+                                      We have good discussion\n\n
+                                      I met his friends last week\n
+                                      Feels like they're up to somethin'\n
+                                      That's good for us\n\n
+                                      We'll let you guys prophesy\n\n
+                                      We'll let you guys prophesy\n
+                                      We gon' see the future first\n\n
+                                      We'll let you guys prophesy\n
+                                      We gon' see the future first\n
+                                      Living so the last night feels like a past life\n\n
+                                      Speaking of the don't know what got into people\n
+                                      Devil be possessin' homies\n
+                                      Demons try to body-jump\n\n
+                                      Why you think I'm in this bitch wearing a fucking yarmulke?\n\n
+                                      Acid on me like the rain\n
+                                      Weed crumbles into glitter\n\n
+                                      Rain, glitter\n\n
+                                      We laid out on this wet floor\n
+                                      Away turf, no Astro\n\n
+                                      Mesmerized how the strobes glow\n
+                                      Look at all the people feet dance\n\n
+                                      I know that your nigga came witcha\n\n
+                                      But he ain't witcha\n\n
+                                      We only human and it's humid in these Balmains\n
+                                      I mean my balls sticking to my jeans\n\n
+                                      We breathin' pheromones, Amber Rose\n
+                                      Sippin' pink-gold lemonades\n\n
+                                      Feelin'\n\n
+                                      I may be younger, but I'll look after you\n
+                                      We're not in love, but I'll make love to you\n\n
+                                      When you're not here, I'll save some for you\n
+                                      I'm not him, but I'll mean something to you\n\n
+                                      I'll mean something to you\n
+                                      I'll mean something to you\n\n
+                                      You got a roommate, he'll hear what we do\n
+                                      It's only awkward if you're fucking him too`,
+                  "ivy.mp3": `I thought that I was dreamin' when you said you love me\n
+                                      The start of nothin'\n\n
+                                      I had no chance to prepare, I couldn't see you comin'\n
+                                      The start of nothin'\n\n
+                                      Ooh, I could hate you now\n
+                                      It's quite alright to hate me now\n\n
+                                      When we both know that deep down\n
+                                      The feeling still deep down is good\n\n
+                                      If I could see through walls\n
+                                      I could see you're faking\n\n
+                                      If you could see my thoughts\n
+                                      You would see our faces\n\n
+                                      Safe in my rental like an armored truck back then\n
+                                      We didn't give a fuck back then\n\n
+                                      I ain't a kid no more\n
+                                      We'll never be those kids again\n\n
+                                      We'd drive to Syd's, had the back then\n
+                                      Back then\n\n
+                                      No matter what I did\n
+                                      My waves wouldn't dip back then\n\n
+                                      Everything sucked back then\n
+                                      We were friends\n\n
+                                      I thought that I was dreamin' when you said you loved me\n
+                                      The start of nothin'\n\n
+                                      I had no chance to prepare, I couldn't see you comin'\n
+                                      The start of nothin'\n\n
+                                      Ooh, I could hate you now\n
+                                      It's quite alright to hate me now\n\n
+                                      But we both know that deep down\n
+                                      The feeling still deep down is good\n\n
+                                      In the halls of your hotel\n
+                                      Arm around my shoulder so I could tell\n\n
+                                      How much I meant to you, meant it sincere back then\n
+                                      We had time to kill back then\n\n
+                                      You ain't a kid no more\n
+                                      We'll never be those kids again\n\n
+                                      It's not the same, ivory's illegal\n
+                                      Don't you remember?\n\n
+                                      I broke your heart last week\n
+                                      You'll probably feel better by the weekend\n\n
+                                      Still remember, had you going crazy\n
+                                      Screamin' my name\n
+                                      The feeling deep down is good\n\n
+                                      I thought that I was dreamin' when you said you loved me\n
+                                      The start of nothin'\n\n
+                                      I had no chance to prepare, couldn't see you comin'\n
+                                      And we started from nothin'\n\n
+                                      Ooh, I could hate you now\n
+                                      It's alright to hate me now\n\n
+                                      We both know that deep down\n
+                                      The feeling still deep down is good\n\n
+                                      All the things I didn't mean to say\n
+                                      I didn't mean to do\n\n
+                                      There were things you didn't need to say\n
+                                      Did you mean to? Mean to?\n\n
+                                      I've been dreamin' of you, dreamin' of you\n
+                                      I've been dreamin' of you, dreamin' of you\n\n
+                                      I've been dreamin', dreamin'`,
+                  "pink_white.mp3": `Yeah yeah woo\n
+                                     Yeah yeah yeah\n\n
+                                     That's the way every day goes\n
+                                     Every time we've no control\n\n
+                                     If the sky is pink and white\n
+                                     If the ground is black and yellow\n\n
+                                     It's the same way you showed me\n\n
+                                     Nod my head don't close my eyes\n
+                                     Halfway on a slow move\n\n
+                                     It's the same way you showed me\n\n
+                                     If you could fly\n\n
+                                     then you'd feel south\n\n
+                                     Up north's getting cold soon\n\n
+                                     The way it is we're on land\n\n
+                                     Still I'm someone to hold true\n\n
+                                     Keep you cool\n
+                                     when it's still alive\n\n
+                                     Won't let you down\n
+                                     when it's all ruin\n\n
+                                     Just the same way\n
+                                     you showed me showed me\n\n
+                                     You showed me love\n\n
+                                     Glory from above\n
+                                     Regard my dear\n\n
+                                     It's all downhill from here\n\n
+                                     In the wake of a hurricane\n
+                                     Dark skin of a summer shade\n\n
+                                     Nosedive into flood lines\n
+                                     Tall tower of milk crates\n\n
+                                     It's the same way you showed me\n\n
+                                     Cannonball off the porch side\n
+                                     Older kids trying off the roof\n\n
+                                     Just the same way\n
+                                     you showed me You showed\n\n
+                                     If you could die\n
+                                     and come back to life\n\n
+                                     Up for air from the swimming pool\n\n
+                                     You'd kneel down to the dry land\n
+                                     Kiss the Earth that birthed you\n\n
+                                     Gave you tools just to stay alive\n
+                                     And make it out\n
+                                     when the sun is ruined\n\n
+                                     That's the same way\n
+                                     you showed me showed me\n\n
+                                     You showed me love\n\n
+                                     Glory from above\n
+                                     Regard my dear\n\n
+                                     It's all downhill from here\n\n
+                                     Remember life remember how it was\n\n
+                                     Climb trees Michael Jackson\n\n
+                                     it all ends here\n\n
+                                     Say what up to Matthew to Shoob\n
+                                     Say what up to Danny\n
+                                     Say what up to life immortality\n\n
+                                     Bending up my Nikes\n
+                                     Running out the melpomene\n
+                                     nicotine\n
+                                     Stealing granny cigs Take it easy\n\n
+                                     Gimme something sweet\n\n
+                                     Bitch I might like immortality\n\n
+                                     This is life life immortality`,
+                  "be_yourself.mp3": `Many college students have gone to college\n
+                                      And gotten hooked on drugs, marijuana, and alcohol\n
+                                      Listen, stop trying to be somebody else\n
+                                      Don't try to be someone else\n
+                                      Be yourself and know that that's good enough\n
+                                      Don't try to be someone else\n
+                                      Don't try to be like someone else\n
+                                      Don't try to act like someone else\n
+                                      Be yourself, be secure with yourself\n
+                                      Rely and trust upon your own decisions\n
+                                      On your own beliefs\n
+                                      You understand the things that I've taught you\n
+                                      Not to drink alcohol, not to use drugs\n
+                                      Don't use that cocaine or marijuana\n
+                                      Because that stuff is highly addictive\n
+                                      When people become weed-heads\n
+                                      They become sluggish, lazy, stupid and unconcerned\n
+                                      Sluggish, lazy, stupid and unconcerned\n
+                                      That's all marijuana does to you, okay This is mom\n
+                                      Unless you're taking it under doctor's, um, control\n
+                                      Then it's regulated\n
+                                      Do not smoke marijuana, do not consume alcohol\n
+                                      Do not get in the car with someone who is inebriated\n
+                                      This is mom, call me, bye`,
+                  "solo.mp3": `Hand me a towel, I'm dirty dancing by myself\n
+                                      Gone off tabs of that acid\n
+                                      Form me a circle, watch my Jagger\n\n
+                                      Might lose my jacket and hit a solo\n\n
+                                      One time\n\n
+                                      We too loud in public then police turned down the function\n
+                                      Now we outside and the timing's perfect\n
+                                      Forgot to tell you, gotta tell you how much I vibe with you\n\n
+                                      And we don't gotta be solo\n\n
+                                      Now stay away from highways\n
+                                      My eyes like them red lights\n\n
+                                      Right now I prefer yellow\n
+                                      Redbone, so mellow\n
+                                      Fuck 'round, be cutting you\n\n
+                                      Think we were better off solo\n\n
+                                      I got that act right in the Windy city that night\n
+                                      No trees to blow through\n
+                                      But blow me and I owe you\n
+                                      Two grams when the sun rise\n
+                                      Smoking good, rolling solo\n\n
+                                      Solo (solo)\n
+                                      Solo (solo)\n
+                                      S-solo (solo)\n
+                                      S-solo (solo)\n\n
+                                      It's hell on Earth and the city's on fire\n
+                                      Inhale, in hell there's heaven\n\n
+                                      There's a bull and a matador dueling in the sky\n
+                                      Inhale, in hell there's heaven\n\n
+                                      Oh, oh, oh, oh\n
+                                      Oh, oh, oh, oh\n\n
+                                      Solo, solo\n
+                                      Solo, solo\n\n
+                                      I'm skipping showers and switching socks, sleeping good and long\n
+                                      Bones feeling dense as fuck, wish a nigga would cross\n\n
+                                      And catch a solo, on time\n\n
+                                      White leaf on my boxers, green leaf turn to vapors for the low\n
+                                      And that mean cheap, cause ain't shit free and I know it\n\n
+                                      Even love ain't, 'cause this nut cost, that clinic killed my soul\n
+                                      But you gotta hit the pussy raw though\n\n
+                                      Now your baby momma ain't so vicious, all she want is her picket fence\n
+                                      And you protest and you picket sign, but them courts won't side with you\n\n
+                                      Won't let you fly solo\n\n
+                                      I wanted that act right in Colorado that night\n
+                                      I brought trees to blow through, but it's just me and no you\n
+                                      Stayed up 'til my phone died\n\n
+                                      Smoking big, rolling solo\n\n
+                                      It's hell on Earth and the city's on fire\n
+                                      Inhale, in hell there's heaven\n\n
+                                      There's a bull and a matador dueling in the sky\n
+                                      Inhale, in hell there's heaven\n\n
+                                      Oh, oh, oh, oh\n
+                                      Oh, oh, oh, oh\n
+                                      Ah (solo, solo)\n
+                                      (Solo)\n\n
+                                      By myself\n
+                                      (Solo)\n
+                                      (Solo, solo)\n
+                                      (Solo, solo)\n\n`,
+                  "skyline_to.mp3": `This is joy, this is summer\n
+                                      Keep alive, stay alive\n\n
+                                      Got your metal on, we're alone\n
+                                      Making sweet love, takin' time\n\n
+                                      'Til God strikes us\n\n
+                                      That's a pretty fucking fast year flew by\n\n
+                                      That's a pretty long third gear in this car\n
+                                      Glidin' on the five\n\n
+                                      The deer run across, kill the headlights\n
+                                      Pretty fucking, underneath moonlight now\n
+                                      Pretty fucking, sunrise in sight\n\n
+                                      In comes the morning, haunting us with the beams\n
+                                      Solstice ain't as far as it used to be\n\n
+                                      It begins to blur, we get older Blur\n\n
+                                      Summer's not as long as it used to be\n
+                                      Everyday counts like crazy Smoke, haze\n\n
+                                      Wanna get soaked\n
+                                      Wanna film a tape on the speed boat\n\n
+                                      We smell of Californication\n
+                                      Strike a pose\n\n
+                                      Everything grows in the Congo\n
+                                      Everything grows\n\n
+                                      Can you come when I call again\n\n
+                                      On comes the evening, gold seeking ends\n
+                                      Piece in my hands worth twice than a friend\n\n
+                                      And two limbs over shoulder, carried away\n
+                                      Because I'm stronger and the Congo is dim smoke\n\n
+                                      In comes the morning smoke\n
+                                      In comes the morning haze`,
+                    "self_control.mp3": `Poolside convo about your summer last night, ooh yeah\n
+                                      About your summer last night\n
+                                      Ain't give you no play, mmm\n
+                                      Could I make you shive last night?\n
+                                      Could I make you shy on the last night, last night?\n
+                                      Could we make it in? Do we have time?\n\n
+                                      I'll be the boyfriend in your wet dreams tonight\n
+                                      Noses on a rail, little virgin wears the white\n
+                                      You cut your hair, but you used to live a blonded life\n
+                                      Wish I was there, wish we'd grown up on the same advice\n
+                                      And our time was right\n\n
+                                      Keep a place for me, for me\n
+                                      I'll sleep between y'all, it's nothing\n
+                                      It's nothing, it's nothing\n
+                                      Keep a place for me, for me\n\n
+                                      Now and then, you miss it, sounds make you cry\n
+                                      Some nights, you dance with tears in your eye\n
+                                      I came to visage 'cause you see me like a UFO\n
+                                      That's like never, 'cause I made you use your self-control\n
+                                      And you made me lose my self-control, my self-control\n\n
+                                      Keep a place for me, for me\n
+                                      I'll sleep between y'all, it's nothing\n
+                                      Keep a place for me\n
+                                      It's nothing, it's nothing\n
+                                      It's nothing, it's nothing\n\n
+                                      Sometimes you'll miss it\n
+                                      And the sound will make you cry\n
+                                      And some nights, you're dancing\n
+                                      With tears in your eyes\n\n
+                                      I, I, I know you gotta leave, leave, leave\n
+                                      Take down some summertime\n
+                                      Give up, just tonight, 'night, 'night\n\n
+                                      I, I, I know you got someone comin'\n
+                                      You're spittin' game, know you got it\n
+                                      I, I, I know you gotta leave, leave, leave\n
+                                      Take down some summertime\n
+                                      Give up, just tonight, 'night, 'night\n\n
+                                      I, I, I know you got someone comin'\n
+                                      You're spittin' game, know you got it (Yeah)\n
+                                      I, I, I know you gotta leave, leave, leave\n
+                                      Take down some summertime\n
+                                      Give up, just tonight, 'night, 'night\n\n
+                                      I, I, I know you got someone comin'\n
+                                      You're spittin' game, know you got it`,
+                    "good_guy.mp3": `Here's to the good guy, he hooked it up\n
+                                      Said if I was in NY I should look you up\n
+                                      First time I'd ever saw you\n
+                                      And you text nothing like you look\n
+                                      Here's to the gay bar you took me to\n
+                                      Here's when I realized you talk so much more than I do\n
+                                      Here's to the highlights when I was convinced\n
+                                      That this was much more than just some night shit\n
+                                      I know you don't need me right now\n
+                                      And to you it's just a late night out\n\n
+                                      This nigga?all the bitches in the neighborhood wanna fuck you, nigga\n
+                                      He told me\n
+                                      I used to fuck with all of 'em\n
+                                      Yeah?I ain't got bitches no more\n
+                                      But now I don't care about bitches like that, my nigga, that shit... Jasmine fucking wrecked my heart\n
+                                      I don't even know how I feel about bi?`,
+                    "nights.mp3": `'Round your city, 'round the clock\n
+                                      Everybody needs you\n
+                                      No, you can't make everybody equal\n\n
+                                      Although you got beaucoup family\n
+                                      You don't even got nobody bein' honest with you\n
+                                      Breathe 'til I evaporated\n\n
+                                      My whole body see through\n
+                                      Transportation, handmade\n\n
+                                      And I know it better than most people\n
+                                      I don't trust 'em anyways\n\n
+                                      You can't break the law with them\n
+                                      Get some gushy, have a calm night\n
+                                      Shooters killin' left and right\n
+                                      Workin' through your worst night\n\n
+                                      If I get my money right\n
+                                      You know I won't need you\n
+                                      And I tell you (bitch)\n\n
+                                      I hope the sack is full up\n
+                                      I'm fuckin', no, I'm fucked up\n\n
+                                      Spend it when I get that\n
+                                      I ain't tryna keep you\n
+                                      Can't keep up a conversation\n
+                                      Can't nobody reach you\n
+                                      Why your eyes well up?\n
+                                      Did you call me from a seance?\n
+                                      You are from my past life\n
+                                      Hope you're doin' well, bruh\n
+                                      I been out here head first\n
+                                      Always like the head first\n
+                                      Signal comin' in and out\n\n
+                                      Hope you're doin' well, bruh\n
+                                      Everybody needs you\n
+                                      Everybody needs you\n
+                                      Ooh, nani nani\n
+                                      This feel like a Quaalude\n
+                                      No sleep in my body\n
+                                      Ain't no bitch in my body, ah\n\n
+                                      New beginnings, ah\n
+                                      New beginnings, wake up akh\n
+                                      The sun's goin' down\n
+                                      Time to start your day, bruh\n
+                                      Can't keep bein' laid off\n\n
+                                      Know you need the money if you gon' survive\n
+                                      Every night shit, every day shit\n
+                                      Droppin' baby off at home before my night shift\n
+                                      You know I can't hear none of that spend the night shit\n
+                                      That kumbaya shit\n
+                                      Wanna see nirvana, but don't wanna die yet\n
+                                      Wanna feel that na na though, could you come by?\n
+                                      Fuck with me after my shift\n
+                                      Know them boys wanna see me broke down and shit\n
+                                      Bummed out and shit, stressed out and shit\n
+                                      That's every day shit\n\n
+                                      Shut the fuck up, I don't want your conversation\n
+                                      Rollin' marijuana, that's a cheap vacation\n
+                                      My every day shit, every night shit, my every day shit\n
+                                      (Every night shit, night shit, night shit, night shit)\n\n
+                                      All my night, been ready for you all my night\n
+                                      Been waitin' on you all my night\n\n
+                                      I'll buzz you in, just let me know when you outside\n
+                                      All my night, you been missin' all my night\n\n
+                                      Still got some good nights memorized\n
+                                      And the look back's gettin' me right\n\n
+                                      Every night fucks every day up\n
+                                      Every day patches the night up\n
+                                      On God, you should match it, it's that KO\n
+                                      No white lighters 'til I fuck my 28th up\n
+                                      1998, my family had that Acura\n
+                                      Oh, the Legend\n
+                                      Kept at least six discs in the changer\n
+                                      Back when Boswell and Percy had it active\n
+                                      Couple bishops in the city buildin' mansions\n
+                                      All the reverends\n
+                                      Preachin' self made millionaire status\n
+                                      When we could only eat at Shoney's on occasion\n
+                                      After 'Trina hit I had to transfer campus\n
+                                      Your apartment out in Houston's where I waited\n
+                                      Stayin' with you when I didn't have a address\n
+                                      Fuckin' on you when I didn't own a mattress\n
+                                      Workin' on a way to make it outta Texas, every night\n\n
+                                      Droppin' baby off at home before my night shift, yeah\n
+                                      You know I can't hear none of that spend the night shit, kumbaya shit\n
+                                      Wanna see nirvana, but don't wanna die yet\n
+                                      Wanna feel that na na though, could you come by?\n
+                                      Fuck with me after my shift\n
+                                      You know them boys wanna see me broke down\n
+                                      See me bummed out, stressed out\n
+                                      That's just everyday shit\n
+                                      Shut the fuck up, I don't want your conversation\n
+                                      Rollin' marijuana, that's a cheap vacation\n
+                                      My every day shit, my every day shit\n
+                                      Every night shit, my every day shit\n
+                                      Every day shit, my every day shit\n
+                                      My every day shit, every night shit`,
+                    "solo_reprise.mp3": `Ayy, ayy, so now I'm?\n\n
+                                      So low that I can see under the skirt of an ant\n
+                                      So low that I don't get high no more\n
+                                      When I geronimo, I just go heh\n
+                                      Solo, my cup is a rojo, my cholo, my friend\n
+                                      So low that I can admit\n
+                                      When I hear that another kid is shot by the popo\n
+                                      It ain't an event no more\n
+                                      So low that no more high horses, so hard to wear Polo\n
+                                      When I do, I cut the pony off\n
+                                      Now there's a hole where there once was a logo, how fitting\n
+                                      So low that I can give a fuck about what is trending\n
+                                      Tryna cut down on my spending\n
+                                      Regardless of winning, instead of pretending\n
+                                      And bending over backwards\n
+                                      Over half of these hoes had work done\n
+                                      Sayin' they want something real from a man\n
+                                      Just saying it, we being real persons\n
+                                      I hate that it's like this, I feel for you, and\n
+                                      I don't know what it's like with a skirt on\n
+                                      So pardon me if I am being insensitive\n
+                                      But darling this only worsens\n
+                                      So low my halo stay way low, it feels like it's bent\n
+                                      So low that when they throw pussy or pesos\n
+                                      I pay no attention to it\n
+                                      So low that I am no rookie but feel like a kid\n
+                                      Lookin' at the other kids\n
+                                      With astonishment while I'm on punishment\n
+                                      Watchin' the summer come close to an end\n
+                                      After 20 years in, I'm so naive I was under the impression\n
+                                      That everyone wrote they own verses\n
+                                      It's comin' back different and, yeah, that shit hurts me\n
+                                      I'm hummin' and whistlin' to those not deserving\n
+                                      I've stumbled and lived every word\n
+                                      Was I working just way too hard`,
+                    "pretty_sweet.mp3": `Now, to the edge I'll race\n
+                                      To the end I'll make it\n
+                                      All the risk, I'll take it\n
+                                      Head bang with my faux friends\n
+                                      We pour a taste out for the dead\n
+                                      This is the blood, the body, the life right now\n
+                                      The height right now\n
+                                      Might be what I need\n
+                                      Might be what I need\n
+                                      Said you wanna hurt me now\n
+                                      You can't hurt me now\n
+                                      That might be what you need\n\n
+                                      What it means to be alive on this side\n
+                                      Said you wanna kill me now\n
+                                      On this side\n
+                                      Don't let me down\n
+                                      On this side\n
+                                      Down, down\n
+                                      Fuck the other side\n
+                                      I'm on this side, I'm on this side, I'm on this side\n
+                                      How it feels to have arrived\n
+                                      I'm inside, I'm inside\n
+                                      Those are my niggas for life\n
+                                      Mothers of us be kind\n
+                                      To the fathers on whom we rely\n
+                                      Fathers of us be kind\n
+                                      To the mothers on whom we rely\n
+                                      Ah-hah, ah-hah, ah-hah, ah-hah\n
+                                      Ah-hah, ah-hah, ah-hah, ah-hah\n\n
+                                      We know you're sugar\n
+                                      We know you're sweet like a sucka\n
+                                      Pretty sweet, pretty sweet`,
+                    "facebook_story.mp3": `I was just telling that I got this girl before\n
+                                      And I was together since 3 years\n
+                                      And uhh, I was not even cheating her or what\n
+                                      And Facebook arrived and, uh\n
+                                      She wanted me to accept her on Facebook\n
+                                      And I don't want it because I was like in front of her\n
+                                      And she told me like Accept me on Facebook\n
+                                      It was virtual, means no sense\n
+                                      So I say I'm in front of you, I don't need to accept you on Facebook\n
+                                      She started to be crazy\n
+                                      She thought that because I didn't accept her\n
+                                      She thought I was cheating\n
+                                      She told me like, uh, It's over, I can't believe you\n
+                                      I said come on, you're crazy, because like, yeah\n
+                                      I'm in front of you, I'm every day here in your house\n
+                                      That's, it means like it's jealousy\n
+                                      Pure jealousy for nothing\n
+                                      You know, virtual thing`,
+                    "close_to_you.mp3": `I'll be honest, I wasn't devastated\n
+                                      But you could've held my hands through this, baby\n
+                                      Let my mind run underneath warm jets\n
+                                      I run my hands through what's left\n
+                                      But we're getting older, baby\n
+                                      Don’t have much longer baby\n
+                                      Why am I preaching\n
+                                      To this choir, to this atheist?\n
+                                      Just like mine, versions of these belong to you\n
+                                      After a while, they're keeping me close to you\n\n
+                                      Just like me, they long to be close to you`,
+                    "white_ferrari.mp3": `Bad luck to talk on these rides
+                                      Mind on the road, your dilated eyes watch the clouds float\n
+                                      White Ferrari, had a good time\n
+                                      (Sweet 16, how was I supposed to know anything?)\n
+                                      I let you out at Central\n
+                                      I didn't care to state the plain\n
+                                      Kept my mouth closed, we're both so familiar\n
+                                      White Ferrari, good times\n\n
+                                      Stick by me, close by me\n
+                                      You were fine, you were fine here\n
+                                      That's just a slow body\n
+                                      You left when I forgot to speak\n
+                                      So I text the speech, lesser speeds, Texas speed, yes\n
+                                      Basic takes its toll on me, 'ventually, 'ventually, yes\n
+                                      Ahh, on me 'ventually, 'ventually, yes\n\n
+                                      I care for you still and I will forever\n
+                                      That was my part of the deal, honest\n
+                                      We got so familiar\n
+                                      Spending each day of the year\n
+                                      White Ferrari, good times\n
+                                      In this life (life), in this life (life)\n
+                                      One too many years\n
+                                      Some tattooed eyelids on a facelift\n
+                                      (Thought you might want to know now)\n
+                                      Mind over matter is magic, I do magic\n
+                                      If you think about it, it'll be over in no time\n
+                                      And that's life\n\n
+                                      I'm sure we're taller in another dimension\n
+                                      You say we're small and not worth the mention\n
+                                      You’re tired of movin', your body's achin'\n
+                                      We could vacay, there's places to go\n
+                                      Clearly this isn't all that there is\n
+                                      Can't take what's been given\n
+                                      But we're so okay here, we're doing fine\n
+                                      Primal and naked\n
+                                      You dream of walls that hold us in prison\n
+                                      It's just a skull, least that's what they call it\n
+                                      And we're free to roam`,
+                    "seigfried.mp3": `The markings on your surface\n
+                                      Your speckled face\n
+                                      Flawed crystals hang from your ears\n
+                                      I couldn't gauge your fears\n
+                                      I can't relate to my peers\n
+                                      I'd rather live outside\n
+                                      I'd rather chip my pride than lose my mind out here\n
+                                      Maybe I'm a fool\n
+                                      Maybe I should move and settle\n
+                                      Two kids and a swimming pool\n
+                                      I'm not brave\n
+                                      (Brave)\n
+                                      I'm not brave\n
+                                      I'm living over city\n
+                                      And taking in the homeless sometimes, I've\n
+                                      Been living in an idea\n
+                                      An idea from another man's mind\n
+                                      Maybe I'm a fool\n
+                                      To settle for a place with some nice views (nice views)\n
+                                      Maybe I should move, settle down\n
+                                      Two kids and a swimming pool\n
+                                      I'm not brave\n
+                                      I'd rather live outside\n
+                                      I'd rather live outside\n
+                                      I'd rather go to jail\n
+                                      I've tried hell (it's a loop)\n
+                                      What would you recommend I do?\n
+                                      (The other side of the loop is a loop)\n
+                                      This, this fe-, this feel, this feel, this feels\n
+                                      This feels how molly must feel\n
+                                      This feels how molly must feel\n
+                                      How molly must feel\n
+                                      This feels how molly must feel\n
+                                      How molly must feel\n
+                                      This is not my life\n
+                                      It's just a fond farewell to a friend\n
+                                      It's just a fond farewell to a friend\n
+                                      This is not my life\n
+                                      It's just a fond farewell to a friend\n
+                                      It's not what I'm like\n
+                                      It's just a fond farewell (brave)\n
+                                      Speaking of nirvana, it was there\n
+                                      Rare as the feathers on my dash from a phoenix\n
+                                      There with my crooked teeth and companion sleeping, yeah\n
+                                      Dreaming a thought that could dream about a thought\n
+                                      That could think of the dreamer that thought\n
+                                      That could think of dreaming and getting a glimmer of God\n
+                                      I be dreaming a dream in a thought\n
+                                      That could dream about a thought\n
+                                      That could think of dreaming a dream\n
+                                      Where I cannot, where I cannot\n
+                                      Less morose and more present\n
+                                      Dwell on my gifts for a second\n
+                                      A moment one solar flare would consume, so why not\n
+                                      Spin this flammable paper on the film that's my life\n
+                                      High flights, inhale the vapor, exhale once and think twice\n
+                                      Eat some shrooms, maybe have a good cry, about you\n
+                                      See some colors, light hang glide off the moon\n
+                                      I'd do anything for you\n
+                                      (In the dark)\n
+                                      I'd do anything for you\n
+                                      (In the dark)\n
+                                      I'd do anything for you\n
+                                      (In the dark)\n
+                                      I'd do anything for you\n
+                                      (In the dark)\n
+                                      I'd do anything for you, anything for you\n
+                                      (In the dark)\n
+                                      I'd do anything for you, anything for you`,
+                    "godspeed.mp3": `I will always love you\n
+                                      How I do\n
+                                      Let go of a prayer for you\n
+                                      Just a sweet word\n
+                                      The table is prepared for you\n
+                                      Wishing you godspeed, glory\n
+                                      There will be mountains you won't move\n
+                                      Still, I'll always be there for you\n
+                                      How I do\n
+                                      I let go of my claim on you, it's a free world\n
+                                      You look down on where you came from sometimes\n
+                                      But you'll have this place to call home, always\n
+                                      This love will keep us through blinding of the eyes (oh)\n
+                                      Silence in the ears, darkness of the mind (until it's time)\n
+                                      This love will keep us through blinding of the eyes (oh, oh-oh)\n
+                                      Silence in the ears, darkness of the mind (oh, oh-oh, oh)\n
+                                      This love will keep us through blinding of the eyes (oh, until it's time we die)\n
+                                      Silence in the ears, darkness of the mind\n
+                                      Hmm-oh-oh, oh, oh-oh\n
+                                      I'll always love you until the time we die\n
+                                      Oh-oh, hmm`,
+                    "futura_free.mp3": `Alright, hold on\n
+                                      If I was being honest\n
+                                      I'd say long as I could fuck three times a day and not skip a meal, I'm good\n
+                                      I used to work on my feet for seven dollars a hour\n
+                                      Call my mama like, "Mama\n
+                                      I ain't making minimum wage, mama\n
+                                      I'm on, mama, I'm on\n
+                                      Now I'm making 400, 600, 800K, mama\n
+                                      To stand on my feet, mama\n
+                                      Play these songs, it's therapy, mama\n
+                                      They paying me, mama\n
+                                      I should be paying them"\n
+                                      I should be paying y'all, honest to God\n
+                                      I'm just a guy, I'm not a god\n
+                                      Sometimes I feel like I'm a god, but I'm not a god\n
+                                      If I was, I don't know which heaven would have me, mama\n
+                                      Let me run this bitch, I'ma run it into the ground, mama, the whole galaxy\n
+                                      Goddamn, fuck these lames, they don't want none\n
+                                      Fuck these lames, they don't want none\n
+                                      Fuck these niggas\n
+                                      Fuck these niggas, they don't want none\n
+                                      Fuck these niggas\n
+                                      Fuck you niggas and\n
+                                      Fuck me if I hated on you\n\n
+                                      I'ma stick around\n
+                                      I'm gon' let my nuts hang\n
+                                      Nigga, you got some just like me, don't you?\n
+                                      Or maybe not just like me\n
+                                      You know I'm Africano Americano\n
+                                      And even if you're half Japanese, roots run deep\n
+                                      Family tree throw a big shadow (Jamming to the rhythm)\n
+                                      Tech company, please give me immortality (It's a face to face)\n
+                                      I'm going rapidly, fading drastically (Keep me high, Castrati)\n
+                                      Damn (Punani fade the stress)\n
+                                      Or pull the zip down\n
+                                      Wet your lips first, lick the tip now (Bugatti left some stretch marks on that freeway)\n
+                                      Smoke somethin'\n
+                                      (Marks on that freeway)\n
+                                      They tryna find 2Pac\n
+                                      Don't let 'em find 2Pac\n
+                                      He evade the press\n
+                                      He escape the stress\n
+                                      La, la-la-la-la\n
+                                      La, la-la-la-la\n
+                                      La-la-la\n\n
+                                      I'll keep quiet and let you run your phone bill up\n
+                                      I know you love to talk\n
+                                      I ain't on your schedule\n
+                                      I ain't on no schedule\n
+                                      I ain't had me a job since 2009\n
+                                      I ain't on no sales floor\n
+                                      You say I'm changing on you\n
+                                      I feel like Selena\n
+                                      They wanna murder a nigga, murder me like Selena\n
+                                      You must ain't get the memo\n
+                                      I don't cuff bitches no more\n
+                                      But your bitch my exception\n
+                                      Come get her outta my photo\n
+                                      I only got one four-door\n
+                                      Remember when I had that Lexus, no\n
+                                      Our friendship don't go back that far\n
+                                      Tyler slept on my sofa, yeah\n
+                                      Niggas go back that far\n
+                                      I ain't smoked all year\n
+                                      This the last song, so I'm finna wipe that off\n
+                                      Tolerance is so low, still smoke a whole 'gar\n
+                                      Ménage on my birthday, tap out on the first stroke\n
+                                      'Cause this ain't no work day, she don't give head anyway\n
+                                      'Cause what niggas say, that's what she tell her man\n
+                                      What a difference distance makes\n
+                                      Niggas wan' fight in the streets\n
+                                      Now shit startin' to make my hands hurt\n
+                                      Jay hit me on the email, said I oughta act my net worth\n
+                                      Dog, this is chess now, not fetch, I ain't runnin' for a nigga\n
+                                      Ain't ran since track meets, that's the only time I ran from a nigga\n
+                                      You can change this track now, could've changed this bitch a long time ago\n
+                                      —know and —know, —know and —know\n
+                                      Shout out to Hollygrove, I'm from that 7th, though\n
+                                      Twins know and Lance know, Clark know and Matt know\n
+                                      Shit went one-eighty on me, please run that back, though\n\n
+                                      You say some shit about me? Tuck a real sport, my nigga\n
+                                      That shit happened the second time? 'Cause Mark saw both times, nigga, I only saw the first time\n
+                                      That second time, Jerron was there, nigga\n
+                                      On God, he grabbed me in circles, nigga\n
+                                      And the, and the other nigga tried to pull me\n
+                                      Oh yeah, Jerron told me you that your ass especially told him\n
+                                      Yeah, 'cause the nigga tried to boom me in my face\n
+                                      I had AD in a headlock, nigga (The first time I saw?), I had this nigga like—\n\n
+                                      Make sure you speak up\n\n
+                                      Okay\n\n
+                                      What's your name?\n\n
+                                      Ryan\n\n
+                                      Yo, ayy be quiet, what's your name?\n
+                                      What do you do?\n
+                                      What's your first memory?\n\n
+                                      The first word I learned to say or that I ever said\n\n
+                                      What's the most amazing thing you've ever witnessed?\n
+                                      (Uh, hell no)\n
+                                      (You're not gon' make it, are you?)\n\n
+                                      Friendship and how it controls the world\n\n
+                                      Hahaha\n
+                                      Alright, um\n
+                                      What three superpowers do you wish you had?\n
+                                      My bad, say it again\n\n
+                                      Flying, contortion, to be invincible\n\n
+                                      Alright, make sure you speak up (What's your name?)\n
+                                      Maybe we can get a little— a little bit, little bit, little bit\n\n
+                                      I wish I could sleep without, like, being dead\n
+                                      But forever at the same time\n\n
+                                      Yo, what, what's, what's the year 3000 going to look like? (Dog, stop, stop, what you mean, bro? Stop, stop)\n\n
+                                      Or it could be great and shit can fly\n
+                                      And buildings would be very, very tall and everybody won't know what the ground looks like\n\n
+                                      That's fucked up\n
+                                      (Excuse me)\n\n
+                                      Chloe, shh, okay, start over\n\n
+                                      Best thing about being me is\n
+                                      I got a nice set of friends, feel me?\n
+                                      A pretty clear mind, I feel like, sometimes\n
+                                      What's the worst thing about being me? Probably, uh–\n\n
+                                      Being Drake\n\n
+                                      I think a lot, a lot, too much\n
+                                      Sometimes I'm very musty\n\n
+                                      Talents, got any secret talents?\n\n
+                                      I don't think so, I'm pretty open with all, everything that I do\n\n
+                                      Talents? Um, I can play the theremin\n\n
+                                      Probably my brother, just to see how much work he has in one day\n\n
+                                      Probably, uh, probably Tyler, his life seems pretty awesome\n
+                                      No, actually, no, fuck him uh\n
+                                      I don't know\n
+                                      Probably Dill, 'cause he doesn't have to do anything at all\n
+                                      Just sits inside his house\n\n
+                                      What's your name?\n\n
+                                      Sage Elsesser\n\n
+                                      What do you do?\n\n
+                                      I play soccer\n
+                                      And I go to school\n
+                                      Um, I wanna be better at skating\n\n
+                                      Probably jump off something really high\n
+                                      Super high and try to land in like a handstand or something\n\n
+                                      Alright, that's it\n\n
+                                      I don't know, there would be a lot of things I'll do\n
+                                      Probably spend a lot of time with my family\n\n
+                                      Spend a couple hours with my family and I would go out and do like everything that I ever thought about trying\n\n
+                                      I don't know, there's a lot of things that you could do\n
+                                      That's it\n\n
+                                      How far is a light-year? How far is a light-year?\n
+                                      (I'd say like a thousand years?)`,
+                };
+
+                let currentIndex = 0;
+
+                function playTrack(path) {
+                  const filename = path.split("/").pop(); //
+                  player.src = path;
+                  player.play();
+                  currentIndex = tracks.indexOf(filename);
+                  lyricsBox.innerText = lyrics[filename] || "(가사 준비 중)";
+
+                  const listItems = document.querySelectorAll("ol li");
+                  listItems.forEach((li) => li.classList.remove("playing"));
+
+                  const currentListItem = listItems[currentIndex];
+                  if (currentListItem) {
+                    currentListItem.classList.add("playing");
+                  }
+                }
+
+                player.addEventListener('ended', () => {
+                  currentIndex++;
+                  if (currentIndex < tracks.length) {
+                    playTrack("blonde/" + tracks[currentIndex]);
+                  }
+                });
+        </script>
+        
+
+	</body>
+</html>
